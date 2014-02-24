@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<manifest>
+  <!-- core extension information -->
+  <plugin>
+    <name value= "Who's on Blackboard"/>
+    <description value= "Photo Module Plugin "/>
+    <handle value= "octetwhosonBb"/>
+    <version value= "1.0"/>
+    <requires>
+    	<bbversion value="9.1"/>
+    </requires>
+    <vendor>
+      <id value="octt"/>
+      <name value="OCTET"/>
+      <url value="http://www.oberlin.edu/octet/" />
+      <description value="Oberlin Center for Technologically Enhanced Teaching." />
+    </vendor>
+    <http-actions>
+      <remove value="admin/remove.jsp"/>
+    </http-actions>
+		
+		
+		<module-defs>
+			<module-type ext-ref="whosonBb" title="Who's on Blackboard" uicreatable="true">
+			<jsp-dir>module</jsp-dir>
+			<jsp>
+				<view>view.jsp</view>
+			</jsp>
+			</module-type>
+			<module type="whosonBb" isadmin="false" useraddable="true" isdeletable="true" isdetachable="true" title="Who's on Blackboard ">
+				<description format="S"></description>
+				<ExtraInfo/>
+				<module-groups>
+					<module-group id="everyone"/>
+				</module-groups>
+			</module>
+		</module-defs>
+		
+	 <permissions>
+        <permission type="attribute" name="user.authinfo" actions="get" />
+        <permission type="attribute" name="user.personalinfo" actions="get" />
+		<permission type="persist" name="Content" actions="create,modify,delete"/>
+      </permissions>
+	</plugin>
+</manifest>
