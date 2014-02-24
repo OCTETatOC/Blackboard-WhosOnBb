@@ -2,9 +2,9 @@
 <manifest>
   <!-- core extension information -->
   <plugin>
-    <name value= "Who's on Blackboard: Admin Tool"/>
-    <description value= "Who's on Blackboard: Admin Tool"/>
-    <handle value= "WhosOnBbAdmin"/>
+    <name value= "Who's on Blackboard"/>
+    <description value= "Photo Module Plugin "/>
+    <handle value= "octetwhosonBb"/>
     <version value= "1.0"/>
     <requires>
     	<bbversion value="9.1"/>
@@ -20,8 +20,24 @@
     </http-actions>
 		
 		
+		<module-defs>
+			<module-type ext-ref="whosonBb" title="Who's on Blackboard" uicreatable="true">
+			<jsp-dir>module</jsp-dir>
+			<jsp>
+				<view>view.jsp</view>
+			</jsp>
+			</module-type>
+			<module type="whosonBb" isadmin="false" useraddable="true" isdeletable="true" isdetachable="true" title="Who's on Blackboard ">
+				<description format="S"></description>
+				<ExtraInfo/>
+				<module-groups>
+					<module-group id="everyone"/>
+				</module-groups>
+			</module>
+		</module-defs>
+		
 		<application-defs>
-      <application handle="WhosOnBbAdmin" type="shared" use-ssl="false" name="Who's on Blackboard: Admin Tool" can-allow-guest="false"
+      <application handle="whosonBbadmin" type="shared" use-ssl="false" name="Who's on Blackboard: Admin Tool" can-allow-guest="false"
        small-icon="" large-icon="">
         <description lang="en_US">A tool which allows the system administrator to view who is currently logged in.</description>
         <links>
@@ -37,9 +53,7 @@
 		   </links>
 	  </application>
    </application-defs>
-		
-		
-		
+   
 	 <permissions>
         <permission type="attribute" name="user.authinfo" actions="get" />
         <permission type="attribute" name="user.personalinfo" actions="get" />
