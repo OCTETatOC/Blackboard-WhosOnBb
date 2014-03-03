@@ -11,11 +11,13 @@
                 blackboard.platform.persistence.*,
 				blackboard.portal.external.*,
 				blackboard.platform.session.*,
-				java.text.SimpleDateFormat"
+				java.text.SimpleDateFormat,
+				java.io.*,
+				java.net.URL"
 %>
 <%@ taglib uri="/bbData" prefix="bbData"%>
 <%@ taglib uri="/bbUI" prefix="bbUI"%>
-
+<%@page import="blackboard.platform.plugin.PlugInUtil"%>
 
 
 
@@ -25,9 +27,27 @@
 <br><br>
 <bbData:context id="userCtxAvail" >
 <%
+String URL = PlugInUtil.getUri("octt", "octetwhosonBb", "module");
+BufferedReader reader = new BufferedReader(new FileReader(URL+"OptOut.txt"));
+String data="";
+String nextLine;
 
+while((nextLine = reader.readLine())!= null){
+    data += nextLine+"\n";
+}
+//File file = new File("OptOut.txt");
+//Scanner test = new Scanner(file);
+//String data = "";
+//while(test.hasNextLine()) {
+//	data += test.nextLine();
+//}
 
-
+%>
+<%@include file="OptOut.txt" %>
+<%-- 
+<div><%=data%></div>
+--%>
+<%
 List<Course> courses = null;
 
 //getting a list of all current active sessions on Blackboard

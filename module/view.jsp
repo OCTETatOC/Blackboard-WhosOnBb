@@ -19,47 +19,55 @@
 
 <%@page import="blackboard.platform.plugin.PlugInUtil"%>
 <% String URL = PlugInUtil.getUri("octt", "octetwhosonBb", "module"); %>
-     <script>
-     
-     setInterval(function(){refresh()},120000);
-     
-      function refresh()
-      {
-        var xmlhttp;
-        var url= '<%=URL%>' + '/view1.jsp';
-        if (window.XMLHttpRequest)
-        {
-            xmlhttp=new XMLHttpRequest();
-        }
-        else
-        {
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange=function()
-        {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200)
-            {
-                document.getElementById("module").innerHTML=xmlhttp.responseText;
-            }
-        }
+<script>
 
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+setInterval(function(){refresh()},12000); 
+
+function refresh() {
+	var xmlhttp;
+	var url= '<%=URL%>' + '/refresh.jsp';
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else {
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			document.getElementById("module").innerHTML=xmlhttp.responseText;
+		}
+	}
+
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
 }
+
+function test() {
+	var xmlhttp;
+	var url= '<%=URL%>' + '/OptOut.txt';
+	if (window.XMLHttpRequest) {
+		xmlhttp=new XMLHttpRequest();
+	} else {
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.open("POST", url, true);
+	xmlhttp.send("This is a test");
+}
+      
 </script>        
 
 
 <body>
-  <div id="module">
+<a href="javascript:test()">test me</a>
+
+<div id="module">
 
 <div style="overflow-y:auto; overflow:auto; max-height: 300px; height: 300px">
 <a href="https://octet1.csr.oberlin.edu/wp/OCTET/programmingwt2014/" target="_blank">More Info</a>
 <br><br>
 <bbData:context id="userCtxAvail" >
 <%
-
-
-
 List<Course> courses = null;
 
 //getting a list of all current active sessions on Blackboard
