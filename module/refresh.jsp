@@ -28,7 +28,7 @@
 <bbData:context id="userCtxAvail" >
 <%
 String URL = PlugInUtil.getUri("octt", "octetwhosonBb", "module");
-BufferedReader reader = new BufferedReader(new FileReader(URL+"OptOut.txt"));
+BufferedReader reader = new BufferedReader(new FileReader(URL+"/OptOut.txt"));
 String data="";
 String nextLine;
 
